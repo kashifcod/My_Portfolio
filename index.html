@@ -50,7 +50,7 @@
 
         .nav-link {
             color: inherit !important;
-            font-weight: 500;
+            font-weight: 600;
             position: relative;
             padding: 0.5rem 1rem !important;
             border-radius: 5px;
@@ -59,7 +59,7 @@
 
         .nav-link:hover {
             color: var(--primary-color) !important;
-            background: rgba(46, 204, 113, 0.1);
+            background: rgba(47, 218, 118, 0.1);
         }
 
         /* Theme Toggle */
@@ -71,7 +71,7 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -83,10 +83,11 @@
         .about-img {
             width: 280px;
             height: 280px;
+            margin-Bottom: 2px;
             border-radius: 50%;
-            /* object-fit: cover; */
+            object-fit: cover;
             border: 5px solid var(--primary-color);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12 px 20px rgba(0, 0, 0, 0.2);
         }
 
         /* Skills Section */
@@ -286,11 +287,11 @@
 
     <!-- About Section -->
     <section id="about">
-        <div class="container">
+        <div class="container mt-10">
             <h2 class="text-center mb-5">About Me</h2>
             <div class="row align-items-center">
                 <div class="col-md-6 text-center">
-                    <img src="images/img.jpeg" class="about-img mt-3" alt="Kashif Ali">
+                    <img src="images\profile 1.png" class="about-img mt-0" alt="Kashif Ali">
                 </div>
                 <div class="col-md-6 mt-4 mt-md-0">
                     <h3>Hi, I'm Kashif Ali</h3>
@@ -305,6 +306,7 @@
             </div>
         </div>
     </section>
+    <hr />
 
     <!-- Skills Section -->
     <section id="skills" class="bg-light">
@@ -346,7 +348,6 @@
             </div>
         </div>
     </section>
-
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
@@ -439,7 +440,7 @@
                         <div class="mb-4">
                             <textarea class="form-control" id="message" rows="5" placeholder="Your Message"
                                 required></textarea>
-                        </div >
+                        </div>
                         <button type="submit" class="btn btn-primary w-100 py-2">
                             Send Message <i class="fas fa-paper-plane ms-2"></i>
                         </button>
