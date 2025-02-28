@@ -1006,7 +1006,7 @@
 
                 <div class="mt-4">
                     <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                    <a href="./Kashif react.pdf" class="btn btn-outline-primary" target="_blank" download>Download CV</a>
+                    <a href="Kashif Ali.pdf" class="btn btn-outline-primary" target="_blank" download>Download CV</a>
                 </div>
             </div>
         </div>
@@ -1262,19 +1262,22 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form class="contact-form" id="contactForm">
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
+                        <input type="hidden" name="access_key" value="b6a14b5b-8412-46fa-b425-83ddddba97a1">
                         <div class="input-group">
                             <i class="fas fa-user"></i>
-                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Your Name"
+                                required>
                         </div>
                         <div class="input-group">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                                required>
                         </div>
                         <div class="input-group">
                             <i class="fas fa-pen"></i>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message"
-                                required></textarea>
+                            <textarea class="form-control" name="message" id="message" rows="5"
+                                placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-submit w-100">
                             Send Message <i class="fas fa-paper-plane ms-2"></i>
@@ -1375,19 +1378,55 @@
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Clear form fields
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('message').value = '';
+            const formData = new FormData(this);
+            const object = {};
+            formData.forEach((value, key) => {
+                object[key] = value;
+            });
 
-            // Show popup message
-            const popupMessage = document.getElementById('popupMessage');
-            popupMessage.style.display = 'block';
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify(object),
+            })
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        // Show success popup
+                        const popupMessage = document.getElementById('popupMessage');
+                        popupMessage.textContent = "Message sent successfully!";
+                        popupMessage.style.display = 'block';
 
-            // Hide popup after 3 seconds
-            setTimeout(function () {
-                popupMessage.style.display = 'none';
-            }, 3000);
+                        // Clear form
+                        this.reset();
+
+                        // Hide popup after 3 seconds
+                        setTimeout(function () {
+                            popupMessage.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        // Show error popup
+                        const popupMessage = document.getElementById('popupMessage');
+                        popupMessage.textContent = "Something went wrong. Please try again.";
+                        popupMessage.style.display = 'block';
+
+                        setTimeout(function () {
+                            popupMessage.style.display = 'none';
+                        }, 3000);
+                    }
+                })
+                .catch((error) => {
+                    // Show error popup
+                    const popupMessage = document.getElementById('popupMessage');
+                    popupMessage.textContent = "Something went wrong. Please try again.";
+                    popupMessage.style.display = 'block';
+
+                    setTimeout(function () {
+                        popupMessage.style.display = 'none';
+                    }, 3000);
+                });
         });
     </script>
 </body>
